@@ -1,0 +1,13 @@
+{
+  "name": "k8s-escape-room",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "onCreateCommand": "docker network inspect kind >/dev/null 2>&1 || docker network create --driver=bridge --subnet=10.172.242.0/24 --ip-range=10.172.242.0/28 --gateway=10.172.242.1 -o com.docker.network.driver.mtu=1280 kind",
+  "forwardPorts": [80, 443],
+  "portsAttributes": {
+    "80": { "label": "Escape Room UI" }
+  },
+  "hostRequirements": { "cpus": 2 }
+}
